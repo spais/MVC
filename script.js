@@ -1,24 +1,17 @@
 class Model {
     constructor() {
 
-        // The state of the model with prepopulated array of todos objects
-        this.todos = [
-            {
-                id: 1, 
-                text: 'To better understand MVC',  
-                complete: false
-            },
-            {
-                id: 2, 
-                text: 'Deep dive js prototypes', 
-                complete: false
-            },
-        ];
+        this.todos = JSON.parse(localStorage.getItem('todos')) || [];
 
     }
 
     bindTodoListChanged(callback) {
         this.onTodoListChanged = callback;
+    }
+
+    _commit(todos) {
+        this.onTodoListChanged(todos);
+        localStorage.setItem('todos', JSON.stringify(todos));
     }
 
     addTodo(todoText) {
@@ -39,6 +32,8 @@ class Model {
     // Filter a todo out of the array by id
     deleteTodo(id) {
         this.todos = this.todos.filter((todo) => todo.id !== id);
+
+        this._commit(this.todos);
     }
 
     // Flip the complete boolean on the specified todo
