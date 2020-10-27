@@ -1,4 +1,4 @@
-MVC Tutorial
+#MVC Tutorial
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 A simple todo MVC application in plain JavaScript.
